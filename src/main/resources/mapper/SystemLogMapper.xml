@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inforun.dao.SystemLogMapper" >
+  <resultMap id="BaseResultMap" type="com.inforun.model.SystemLog" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="LOG" property="log" jdbcType="VARCHAR" />
+    <result column="LOG_OPERATION" property="logOperation" jdbcType="VARCHAR" />
+    <result column="LOG_SYSTEM" property="logSystem" jdbcType="VARCHAR" />
+    <result column="LOG_TIME" property="logTime" jdbcType="TIMESTAMP" />
+    <result column="LOG_TYPE" property="logType" jdbcType="DECIMAL" />
+    <result column="LOG_USER" property="logUser" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="MODULE" property="module" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, BANK_NAME, LOG, LOG_OPERATION, LOG_SYSTEM, LOG_TIME, LOG_TYPE, LOG_USER, MEMO, 
+    MODULE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from DEV.T_SYSTEM_LOG
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from DEV.T_SYSTEM_LOG
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.inforun.model.SystemLog" >
+    insert into DEV.T_SYSTEM_LOG (ID, BANK_NAME, LOG, 
+      LOG_OPERATION, LOG_SYSTEM, LOG_TIME, 
+      LOG_TYPE, LOG_USER, MEMO, 
+      MODULE)
+    values (#{id,jdbcType=DECIMAL}, #{bankName,jdbcType=VARCHAR}, #{log,jdbcType=VARCHAR}, 
+      #{logOperation,jdbcType=VARCHAR}, #{logSystem,jdbcType=VARCHAR}, #{logTime,jdbcType=TIMESTAMP}, 
+      #{logType,jdbcType=DECIMAL}, #{logUser,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{module,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inforun.model.SystemLog" >
+    insert into DEV.T_SYSTEM_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="log != null" >
+        LOG,
+      </if>
+      <if test="logOperation != null" >
+        LOG_OPERATION,
+      </if>
+      <if test="logSystem != null" >
+        LOG_SYSTEM,
+      </if>
+      <if test="logTime != null" >
+        LOG_TIME,
+      </if>
+      <if test="logType != null" >
+        LOG_TYPE,
+      </if>
+      <if test="logUser != null" >
+        LOG_USER,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="module != null" >
+        MODULE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="log != null" >
+        #{log,jdbcType=VARCHAR},
+      </if>
+      <if test="logOperation != null" >
+        #{logOperation,jdbcType=VARCHAR},
+      </if>
+      <if test="logSystem != null" >
+        #{logSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        #{logTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logType != null" >
+        #{logType,jdbcType=DECIMAL},
+      </if>
+      <if test="logUser != null" >
+        #{logUser,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inforun.model.SystemLog" >
+    update DEV.T_SYSTEM_LOG
+    <set >
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="log != null" >
+        LOG = #{log,jdbcType=VARCHAR},
+      </if>
+      <if test="logOperation != null" >
+        LOG_OPERATION = #{logOperation,jdbcType=VARCHAR},
+      </if>
+      <if test="logSystem != null" >
+        LOG_SYSTEM = #{logSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        LOG_TIME = #{logTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logType != null" >
+        LOG_TYPE = #{logType,jdbcType=DECIMAL},
+      </if>
+      <if test="logUser != null" >
+        LOG_USER = #{logUser,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        MODULE = #{module,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inforun.model.SystemLog" >
+    update DEV.T_SYSTEM_LOG
+    set BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      LOG = #{log,jdbcType=VARCHAR},
+      LOG_OPERATION = #{logOperation,jdbcType=VARCHAR},
+      LOG_SYSTEM = #{logSystem,jdbcType=VARCHAR},
+      LOG_TIME = #{logTime,jdbcType=TIMESTAMP},
+      LOG_TYPE = #{logType,jdbcType=DECIMAL},
+      LOG_USER = #{logUser,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      MODULE = #{module,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
